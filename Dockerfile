@@ -7,7 +7,7 @@ COPY package.json ./
 COPY package-lock.json ./
 
 # Bağımlılıkları yükle
-RUN npm install
+RUN npm install --omit=dev --legacy-peer-deps
 
 # Geri kalan her şeyi kopyala
 COPY . .
