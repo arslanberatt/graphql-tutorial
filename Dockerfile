@@ -1,20 +1,16 @@
-# Node.js resmi image
 FROM node:18
 
-# Çalışma dizini
 WORKDIR /app
 
-# package.json ve package-lock.json dosyalarını kopyala
-COPY package*.json ./
+# Paket dosyalarını ayrı kopyala (önce)
+COPY package.json ./
+COPY package-lock.json ./
 
-# Gerekli modülleri yükle
+# Bağımlılıkları yükle
 RUN npm install
 
-# Geri kalan tüm dosyaları kopyala
+# Geri kalan her şeyi kopyala
 COPY . .
 
-# Uygulamanın dinleyeceği port (varsayılan 3000)
 EXPOSE 3000
-
-# Uygulama başlatma komutu
 CMD ["node", "app.js"]
