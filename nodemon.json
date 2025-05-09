@@ -1,7 +1,0 @@
-{
-  "env": {
-    "mongoDatabase": "cafe-menu",
-    "mongoUserName": "arslanberatt",
-    "mongoUserPassword": "PatatesTugba123"
-  }
-}
