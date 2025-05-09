@@ -1,10 +1,12 @@
+require('dotenv').config();
+
 const express = require('express');
 const { graphqlHTTP } = require('express-graphql');
 const schema = require('./server/schema/schema');
 const mongoose = require('mongoose');
-const port = process.env.PORT || 8000;
 
 const app = express();
+const port = process.env.PORT || 8000;
 
 app.use(
   '/graphql',
@@ -20,9 +22,9 @@ mongoose
   )
   .then(() => {
     app.listen(port, () => {
-      console.log('Listening for request on my awsome port 4000');
+      console.log(`🚀 Sunucu ${port} portunda çalışıyor`);
     });
   })
   .catch(err => {
-    console.log('Error connecting to MongoDB:', err);
+    console.error('❌ MongoDB bağlantı hatası:', err.message);
   });
