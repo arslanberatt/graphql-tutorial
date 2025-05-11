@@ -217,6 +217,17 @@ const Mutation = new GraphQLObjectType({
         return removedPost;
       },
     },
+    removePosts: {
+      type: PostType,
+      args: { ids: { type: new GraphQLList(GraphQLString) } },
+    },
+    resolve(parent, args) {
+      let removedPosts = Post.deleteMany({ _id: args.ids }).exec();
+      if (removedPosts) {
+        throw new Error('Hobi bulunamadı veya silinemedi.');
+      }
+      return removedPosts;
+    },
 
     createHobby: {
       type: HobbyType,
@@ -263,6 +274,17 @@ const Mutation = new GraphQLObjectType({
         }
         return removedHobby;
       },
+    },
+    removeHobbies: {
+      type: HobbyType,
+      args: { ids: { type: new GraphQLList(GraphQLString) } },
+    },
+    resolve(parent, args) {
+      let removedHobbies = Hobby.deleteMany({ _id: args.ids }).exec();
+      if (removedHobbies) {
+        throw new Error('Hobi bulunamadı veya silinemedi.');
+      }
+      return removedHobbies;
     },
   },
 });
